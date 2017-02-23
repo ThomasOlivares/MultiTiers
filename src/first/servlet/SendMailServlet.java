@@ -22,8 +22,8 @@ public class SendMailServlet extends HttpServlet {
     public void service(HttpServletRequest request, HttpServletResponse response)
 	throws IOException, ServletException {
 
-        response.setContentType("text/html");
-        PrintWriter out = response.getWriter();
+      response.setContentType("text/html");
+      PrintWriter out = response.getWriter();
 	  String from =  request.getParameter("from");
 	  String to =  request.getParameter("to");
 	  String subject =  request.getParameter("subject");
