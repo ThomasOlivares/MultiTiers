@@ -47,7 +47,27 @@ public class Message implements java.io.Serializable {
     }
     public void setNew(boolean isNewp){
 	isNew=isNewp;
+	
+	
+	
     }
     // ajouter ici les méthodes que vous jugez nécessaires
+
+	@Override
+	public String toString() 
+	{
+		StringBuilder builder = new StringBuilder();
+		if(isNew)
+			builder.append("New");
+		builder.append("Message:\nfrom: ");
+		builder.append(from);
+		builder.append("\nto:");
+		builder.append(to);
+		builder.append("\nSubject:");
+		builder.append(subject);
+		builder.append("\nMessage=");
+		builder.append(message);
+		return builder.toString();
+	}
 
 }
