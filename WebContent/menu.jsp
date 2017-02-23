@@ -4,9 +4,20 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Welcome</title>
 </head>
 <body>
+
+<form action="menu.jsp" method="GET">
+From: <input type="text" name="from">
+<br />
+To: <input type="text" name="to" />
+<br />
+Subject: <input type="text" name="subject" />
+<br />
+Message: <input type="text" name="message" />
+<input type="submit" value="Submit" />
+</form>
 
 </body>
 </html>
