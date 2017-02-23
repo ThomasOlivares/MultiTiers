@@ -2,12 +2,12 @@ package mail;
 import java.util.Vector;
 
 public class MailServer{
-    public Vector messages;
+    public Vector<Message> messages;
     private static MailServer  instance=null;
     // ajouter ici les variables que vous jugez nécessaires
 
     public MailServer(){
-	messages=new Vector();
+	messages=new Vector<Message>();
     }
 
     public static MailServer   newInstance(){
@@ -15,6 +15,7 @@ public class MailServer{
 	    instance=new  MailServer();
 	return instance;       
     }
+    
    public String sendMessage(String fromp, String top, String subject, String messagep){
     // créer un  nouveau message 
 	// ajouter votre code ici
@@ -27,8 +28,8 @@ public class MailServer{
        return ("Message sent successfully : "+(messages.size())+"messages on the server");
     }
 
-    public Vector readMessages(String to){
-	Vector messagesRecus=new Vector();
+    public Vector<Message> readMessages(String to){
+    	Vector<Message> messagesRecus=new Vector<Message>();
 	// récupérer, dans messagesRecus, les messages dont le destinataire est "to", il faut les marquer comme étant "lu"
 	// ajouter votre code ici
 
@@ -107,8 +108,8 @@ public class MailServer{
 
     // ajouter ici les méthodes que vous jugez nécessaires
     
-    public Vector readAllMessages(String to){
-    	Vector messagesRecus=new Vector();
+    public Vector<Message> readAllMessages(String to){
+    	Vector<Message> messagesRecus=new Vector<Message>();
     	// récupérer, dans messagesRecus, les messages dont le destinataire est "to", il faut les marquer comme étant "lu"
     	// ajouter votre code ici
 

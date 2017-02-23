@@ -1,13 +1,18 @@
 package first.servlet;
 
-import java.util.*;
+import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import mail.*;
 
 public class SendMailServlet extends HttpServlet {
 
-    MailServer ms ;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	MailServer ms ;
 
     public void init(ServletConfig config) {
 	ms = MailServer.newInstance();

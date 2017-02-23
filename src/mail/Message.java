@@ -1,6 +1,10 @@
 package mail;
 public class Message implements java.io.Serializable {
-    private String from;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String from;
     private String to;
     private String subject;
     private String message="";
