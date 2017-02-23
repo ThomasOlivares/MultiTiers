@@ -22,7 +22,6 @@ public class MailServer{
 	   Message msg= new Message(fromp,top,subject,messagep);
 
 	// ajouter le message dans la listes des messages du serveur
-	// ajouter votre code ici
 	   messages.addElement(msg);
 
        return ("Message sent successfully : "+(messages.size())+"messages on the server");
