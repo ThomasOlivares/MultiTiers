@@ -3,9 +3,11 @@ package first.servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.*;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import mail.*;
 
+@WebServlet("/SendMailServlet")
 public class SendMailServlet extends HttpServlet {
 
     /**
