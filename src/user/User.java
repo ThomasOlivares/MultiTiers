@@ -1,4 +1,4 @@
-package mail;
+package user;
 
 import java.util.ArrayList;
 

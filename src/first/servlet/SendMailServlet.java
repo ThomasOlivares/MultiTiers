@@ -7,6 +7,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import mail.*;
 
+import useful.classes.UtilityFunctions;
+
 @WebServlet("/SendMailServlet")
 public class SendMailServlet extends HttpServlet {
 
@@ -23,13 +25,24 @@ public class SendMailServlet extends HttpServlet {
 
     public void service(HttpServletRequest request, HttpServletResponse response)
     		throws IOException, ServletException {
+    	
+    	//session verification
+        ServletContext sc =getServletConfig().getServletContext();
+        HttpSession session = UtilityFunctions.verifyLogedInUser(request);
+        if(session==null)//user not authenticated        
+        {
+        	UtilityFunctions.redirectToLogin(sc,request,response);
+        	return;
+        }
 
-        response.setContentType("text/html");
+        response.setContentType("text/html");        
         PrintWriter out = response.getWriter();
         String from =  request.getParameter("from");
         String to =  request.getParameter("to");
         String subject =  request.getParameter("subject");
-        String message =  request.getParameter("message");	    
+        String message =  request.getParameter("message");	
+        
+        
         ms.sendMessage(from, to,subject, message);
         out.println("Message Sent successfully");
 	

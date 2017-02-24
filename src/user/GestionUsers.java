@@ -1,4 +1,4 @@
-package mail;
+package user;
 
 import java.util.ArrayList;
 
@@ -11,13 +11,16 @@ public class GestionUsers {
 	}
 	
 	public static ArrayList<User> newInstance(){
-    	if (users==null)	
+    	if (users==null)
+    	{
     		users = new ArrayList<User>();
-	    	users.add(new User("bob", "passe"));
+	    	users.add(new User("bob", "passe"));//to test right now
+    	}
 	    return users;       
 	}
 	
-	public boolean isUser(String login, String mdp){
+	public boolean isUser(String login, String mdp)
+	{
 		for (User user : users){
 			if (user.getLogin().equals(login) && 
 				user.getMdp().equals(mdp))

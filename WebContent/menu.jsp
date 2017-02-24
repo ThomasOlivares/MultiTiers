@@ -8,6 +8,8 @@
 </head>
 <body>
 
+<h1> Send an email:</h1>
+
 <form action="SendMailServlet" method="GET">
 From: <input type="text" name="from">
 <br />
@@ -19,6 +21,13 @@ Message: <input type="text" name="message" />
 <input type="submit" value="Submit" />
 </form>
 
+<h1> Receive all your mails:</h1>
+<br> <a href="ReceiveMailServlet"> Here</a>
+<h1> Delete all the mails you already read:</h1>
+<br> <a href="DeleteReadMailServlet"> Here</a>
+</body>
+
+<h1> Logout:</h1>
 <a href = "http://localhost:8080/MVC_Olivares_Vignat/DeconnexionUser">Logout</a>
 
 </body>

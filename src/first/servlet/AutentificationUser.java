@@ -12,9 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import mail.GestionUsers;
 import mail.MailServer;
-import mail.User;
+import user.GestionUsers;
+import user.User;
 
 /**
  * Servlet implementation class AutentificationUser
