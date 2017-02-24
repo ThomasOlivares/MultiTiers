@@ -7,6 +7,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import mail.*;
 
+import user.User;
+
 import useful.classes.UtilityFunctions;
 
 @WebServlet("/SendMailServlet")
@@ -27,21 +29,41 @@ public class SendMailServlet extends HttpServlet {
     		throws IOException, ServletException {
     	
     	//session verification
-        ServletContext sc =getServletConfig().getServletContext();
-        HttpSession session = UtilityFunctions.verifyLogedInUser(request);
-        if(session==null)//user not authenticated        
+    	int a=0;
+      
+        User user = UtilityFunctions.getUser(request);
+        if(user==null)//user not authenticated        
         {
-        	UtilityFunctions.redirectToLogin(sc,request,response);
-        	return;
+        	 ServletContext sc =getServletConfig().getServletContext();
+        	RequestDispatcher rd = sc.getRequestDispatcher("/SaisieIdentification"); //TODO proper url
+            rd.include(request, response);
+            return;
         }
 
         response.setContentType("text/html");        
         PrintWriter out = response.getWriter();
-        String from =  request.getParameter("from");
+        String from =  user.getMail();
+        if(from==null)
+        {
+        	  ServletContext sc =getServletConfig().getServletContext();
+        	// he has a session but a bad one, invalidate and kick
+        	request.getSession().invalidate();
+        	UtilityFunctions.redirectToLogin(sc,request,response);
+        	return;
+        }
+        
+        
         String to =  request.getParameter("to");
         String subject =  request.getParameter("subject");
         String message =  request.getParameter("message");	
-        
+        if(to==null || subject==null|| message==null)
+        {
+        	 ServletContext sc =getServletConfig().getServletContext();
+        	//bad form redirect to form
+        	RequestDispatcher rd = sc.getRequestDispatcher("/SaisieIdentification"); //TODO proper url
+            rd.include(request, response); 
+            return;
+        }
         
         ms.sendMessage(from, to,subject, message);
         out.println("Message Sent successfully");

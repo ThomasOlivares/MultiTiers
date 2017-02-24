@@ -11,8 +11,6 @@
 <h1> Send an email:</h1>
 
 <form action="SendMailServlet" method="GET">
-From: <input type="text" name="from">
-<br />
 To: <input type="text" name="to" />
 <br />
 Subject: <input type="text" name="subject" />

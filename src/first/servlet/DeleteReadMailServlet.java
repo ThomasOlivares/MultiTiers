@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import mail.MailServer;
+
+import user.User;
 import useful.classes.UtilityFunctions;
 
 /**
@@ -40,10 +42,10 @@ public class DeleteReadMailServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	//session verification
-        ServletContext sc =getServletConfig().getServletContext();
-        HttpSession session = UtilityFunctions.verifyLogedInUser(request);
-        if(session==null)//user not authenticated        
+        User user = UtilityFunctions.getUser(request);
+        if(user==null)//user not authenticated        
         {
+        	ServletContext sc =getServletConfig().getServletContext();
         	UtilityFunctions.redirectToLogin(sc,request,response);
         	return;
         }
@@ -52,7 +54,15 @@ public class DeleteReadMailServlet extends HttpServlet {
         response.setContentType("text/html");
     	PrintWriter out = response.getWriter();
     	
-    	String to =  request.getParameter("to");    	
+    	String to =   user.getMail();
+    	if(to==null)
+         {
+         	// he has a session but a bad one, invalidate and kick
+    		ServletContext sc =getServletConfig().getServletContext();
+    		request.getSession().invalidate();
+         	UtilityFunctions.redirectToLogin(sc,request,response);
+         	return;
+         }
     	String return_=ms.removeMessages(to);
     	out.println("Deleting all read emails:");
     	out.println(return_);
