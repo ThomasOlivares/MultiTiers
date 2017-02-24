@@ -34,7 +34,6 @@ public class AutentificationUser extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
 		
 		String login = request.getParameter("login");
 		String mdp = request.getParameter("mdp");
@@ -49,6 +48,7 @@ public class AutentificationUser extends HttpServlet {
 		}
 		
 		if (gestion.isUser(login, mdp)){
+			HttpSession session = request.getSession(false);
 			User actuel = new User(login, mdp);
 			session.setAttribute("user", actuel);
 			ServletContext sc = getServletConfig().getServletContext();
