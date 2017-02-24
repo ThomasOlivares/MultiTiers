@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<form action="menu.jsp" method="GET">
+<form action="SendMailServlet" method="GET">
 From: <input type="text" name="from">
 <br />
 To: <input type="text" name="to" />
