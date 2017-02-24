@@ -46,11 +46,10 @@ public class AutentificationUser extends HttpServlet {
         	RequestDispatcher rd = sc.getRequestDispatcher("/erreur.jsp");
         	rd.include(request, response);
 		}
-		
-		if (gestion.isUser(login, mdp)){
+		User user;
+		if ((user = gestion.isUser(login, mdp))!=null){
 			HttpSession session = request.getSession(false);
-			User actuel = new User(login, mdp);
-			session.setAttribute("user", actuel);
+			session.setAttribute("user", user);
 			ServletContext sc = getServletConfig().getServletContext();
         	RequestDispatcher rd = sc.getRequestDispatcher("/menu.jsp");
         	rd.include(request, response);

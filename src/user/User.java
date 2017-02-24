@@ -6,11 +6,13 @@ public class User {
 	
 	private String login;
 	private String mdp;
+	private String mail;
 	
 	
-	public User(String login, String mdp){
+	public User(String login, String mdp, String mail){
 		this.login = login;
 		this.mdp = mdp;
+		this.mail = mail;
 	}
 
 	public String getLogin() {
@@ -27,5 +29,13 @@ public class User {
 
 	public void setMdp(String mdp) {
 		this.mdp = mdp;
+	}
+
+	public String getMail() {
+		return mail;
+	}
+
+	public void setMail(String mail) {
+		this.mail = mail;
 	}
 }

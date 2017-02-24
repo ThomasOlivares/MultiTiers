@@ -14,20 +14,20 @@ public class GestionUsers {
     	if (users==null)
     	{
     		users = new ArrayList<User>();
-	    	users.add(new User("bob", "passe"));//to test right now
+	    	users.add(new User("bob", "passe", "bob@gmail.com"));//to test right now
     	}
 	    return users;       
 	}
 	
-	public boolean isUser(String login, String mdp)
+	public User isUser(String login, String mdp)
 	{
 		for (User user : users){
 			if (user.getLogin().equals(login) && 
 				user.getMdp().equals(mdp))
 			{
-				return true;
+				return user;
 			}
 		}
-		return false;
+		return null;
 	}
 }
