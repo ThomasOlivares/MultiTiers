@@ -39,7 +39,7 @@ public class DeconnexionUser extends HttpServlet {
 		
 		// We redirect the user to the welcome page
 		ServletContext sc = getServletConfig().getServletContext();
-    	RequestDispatcher rd = sc.getRequestDispatcher("/accueil.jsp");
+    	RequestDispatcher rd = sc.getRequestDispatcher("/aurevoir.jsp");
     	rd.include(request, response);
 	}
 

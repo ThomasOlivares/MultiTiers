@@ -8,5 +8,8 @@
 </head>
 <body>
 
+<h2>Disconnection done</h2>
+<a href = "http://localhost:8080/MVC_Olivares_Vignat/accueil.jsp">Go back to the welcome page</a>
+
 </body>
 </html>

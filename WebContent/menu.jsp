@@ -19,7 +19,7 @@ Message: <input type="text" name="message" />
 <input type="submit" value="Submit" />
 </form>
 
-<a href = "http://localhost:8080/MVC_Olivares_Vignat/accueil.jsp">Deconnexion</a>
+<a href = "http://localhost:8080/MVC_Olivares_Vignat/DeconnexionUser">Logout</a>
 
 </body>
 </html>
