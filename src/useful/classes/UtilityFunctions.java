@@ -50,7 +50,7 @@ public class UtilityFunctions {
     	else{
     		// we get the login and the password from the cookie
     		String cookieValue = userId.getValue();
-    		String delims = "[ ]+";
+    		String delims = "[/]+";
     		String[] idUser = cookieValue.split(delims);
     		
     		// we check if the user exist

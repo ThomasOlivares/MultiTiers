@@ -1,9 +1,5 @@
 package user;
 
-import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Date;
-
 public class User {
 	
 	private String login;

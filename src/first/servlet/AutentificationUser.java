@@ -66,7 +66,7 @@ public class AutentificationUser extends HttpServlet {
 			// we store if the user allow cookies, and create a cookie if he does
 			user.setAllowCookies(allowCookies != null);
 			if (allowCookies != null){
-				String value = user.getLogin() + " " + user.getMdp() + " " + user.getMail();
+				String value = user.getLogin() + "/" + user.getMdp();
 				Cookie userId = new Cookie("userId", value);
 				response.addCookie(userId);
 			}
@@ -76,7 +76,7 @@ public class AutentificationUser extends HttpServlet {
 			
 			session.setAttribute("user", user);
 			ServletContext sc = getServletConfig().getServletContext();
-        	RequestDispatcher rd = sc.getRequestDispatcher("/menu.jsp");
+        	RequestDispatcher rd = sc.getRequestDispatcher("/WEB-INF/Menu.jsp");
         	rd.include(request, response);
 		}
 		else{
