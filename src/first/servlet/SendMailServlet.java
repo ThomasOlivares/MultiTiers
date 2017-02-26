@@ -72,7 +72,7 @@ public class SendMailServlet extends HttpServlet {
         +"Message : " + message+ "<br>"+ "<br>";
         
 
-      //UtilityFunctions.printFrontPageLink(out);
+        mess+=UtilityFunctions.printFrontPageLink();
         request.setAttribute("message", mess);
         
         this.getServletContext().getRequestDispatcher( "/WEB-INF/SendMail.jsp" ).forward( request, response);

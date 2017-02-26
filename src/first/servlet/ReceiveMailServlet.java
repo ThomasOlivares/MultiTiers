@@ -60,7 +60,7 @@ public class ReceiveMailServlet extends HttpServlet {
     		mess+=messages.elementAt(i).toString()+"<br>";
     	}
 
-    	//UtilityFunctions.printFrontPageLink(out);
+    	mess+=UtilityFunctions.printFrontPageLink();
         request.setAttribute("message", mess);
         
         this.getServletContext().getRequestDispatcher( "/WEB-INF/ReceiveMail.jsp" ).forward( request, response);

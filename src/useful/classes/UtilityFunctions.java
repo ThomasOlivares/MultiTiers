@@ -19,7 +19,7 @@ public class UtilityFunctions {
 	}
 	public static String printFrontPageLink()
 	{
-		return "<br> <a href=\"menu.jsp\"> Go back to the menu</a>";
+		return "<br> <a href=\"Menu\"> Go back to the menu</a>";
 	}
 	
 	

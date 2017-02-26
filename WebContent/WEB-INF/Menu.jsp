@@ -7,26 +7,6 @@
 <title>Welcome</title>
 </head>
 <body>
-<%@page import ="useful.classes.UtilityFunctions" %>
-<%@page import ="user.User" %>
-<% User user = UtilityFunctions.getUser(request);
-if(user==null)//user not authenticated        
-{
-	 ServletContext sc =getServletConfig().getServletContext();
-	 UtilityFunctions.redirectToLogin(sc,request,response);
-    return;
-}     
-String from =  user.getMail();
-if(from==null)
-{
-	  ServletContext sc =getServletConfig().getServletContext();
-	// he has a session but a bad one, invalidate and kick
-	request.getSession().invalidate();
-	UtilityFunctions.redirectToLogin(sc,request,response);
-	return;
-} %>
-
-
 
 <h1> Send an email:</h1>
 
