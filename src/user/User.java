@@ -10,9 +10,13 @@ public class User {
 	private String mdp;
 	private String mail;
 	private long validity;
+	private boolean allowCookies;
 	
 	
 	public User(String login, String mdp, String mail){
+		// by default the user doesn't allow cookies
+		this.allowCookies = false;
+		
 		// we set the validty of the user cookie at now + 4 days
 		long now = System.currentTimeMillis();
 		this.validity = now + 4*24*3600*1000;
@@ -24,7 +28,12 @@ public class User {
 	
 	// we return if the user can steel access to the website using cookies or not
 	public boolean isValid(){
-		return System.currentTimeMillis() < validity;
+		if (allowCookies){
+			return System.currentTimeMillis() < validity;
+		}
+		else{
+			return false;
+		}
 	}
 
 	public String getLogin() {
@@ -49,5 +58,13 @@ public class User {
 
 	public void setMail(String mail) {
 		this.mail = mail;
+	}
+
+	public boolean isAllowCookies() {
+		return allowCookies;
+	}
+
+	public void setAllowCookies(boolean allowCookies) {
+		this.allowCookies = allowCookies;
 	}
 }

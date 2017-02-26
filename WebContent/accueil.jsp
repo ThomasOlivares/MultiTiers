@@ -13,8 +13,10 @@
 <form action="AutentificationUser" method="POST">
 Login: <input type="text" name="login">
 <br />
-Mot de passe: <input type="text" name="mdp" />
+Password: <input type="text" name="mdp" />
 <br />
+Allow cookies: <input type="checkbox" name="cookies" />
+<br/>
 <input type="submit" value="Connexion" />
 </form>
 
