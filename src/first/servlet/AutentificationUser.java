@@ -61,6 +61,8 @@ public class AutentificationUser extends HttpServlet {
 		User user;
 		if ((user = gestion.isUser(login, mdp))!=null){
 			HttpSession session = request.getSession(false);
+			// we invalidate the session after 50 seconds of inactivity
+			session.setMaxInactiveInterval(50);
 			session.setAttribute("user", user);
 			ServletContext sc = getServletConfig().getServletContext();
         	RequestDispatcher rd = sc.getRequestDispatcher("/menu.jsp");

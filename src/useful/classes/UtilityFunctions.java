@@ -27,7 +27,21 @@ public class UtilityFunctions {
 		HttpSession session = request.getSession(false);//so that we don't generate one if we don't have one
 	    if(session == null)
 	    {
-	    	return null;
+	    	// search an id cookie in the request
+	    	Cookie[] cookies = request.getCookies();
+	    	Cookie userId = searchCookie(cookies, "userId");
+	    	if (userId == null){
+	    		return null;
+	    	}
+	    	else{
+	    		// we get the login and the password from the cookie
+	    		String cookieValue = userId.getValue();
+	    		String delims = "[ ]+";
+	    		String[] idUser = cookieValue.split(delims);
+	    		User user = new User(idUser[0], idUser[1], idUser[2]);
+	    		return user;
+	    	}
+	    	
 	    }
 	    //check that he didn't just obtain a rogue session
 	    User identClient = (User)session.getAttribute("user");
@@ -36,6 +50,26 @@ public class UtilityFunctions {
 	    	return null;
 	    }
 	    else return identClient;
+	}
+	
+	// search a cookie in an array of cookies, return null if not found
+	private static Cookie searchCookie(Cookie[] cookies, String cookieName){
+		if (cookies != null) 
+    	{
+    	    for(int i=0; i<cookies.length; i++) 
+    	    {
+    	        Cookie cookie = cookies[i];
+    	        if (cookieName.equals(cookie.getName())) 
+    	        {
+    	            return cookie;
+    	        }
+    	    }
+    	    return null;
+    	}
+    	else
+    	{
+    	    return null;
+    	}
 	}
 	
 
