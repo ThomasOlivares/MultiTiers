@@ -64,7 +64,7 @@ public class DeleteReadMailServlet extends HttpServlet {
          	return;
          }
     	String mess="Deleting all read emails:<br>" +ms.removeMessages(to);
-    	//UtilityFunctions.printFrontPageLink(out);
+    	mess+=UtilityFunctions.printFrontPageLink();
         request.setAttribute("message", mess);
         
         this.getServletContext().getRequestDispatcher( "/WEB-INF/DeleteMail.jsp" ).forward( request, response);
