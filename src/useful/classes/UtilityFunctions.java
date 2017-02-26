@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
+import user.GestionUsers;
 import user.User;
 
 
@@ -27,21 +28,7 @@ public class UtilityFunctions {
 		HttpSession session = request.getSession(false);//so that we don't generate one if we don't have one
 	    if(session == null)
 	    {
-	    	// search an id cookie in the request
-	    	Cookie[] cookies = request.getCookies();
-	    	Cookie userId = searchCookie(cookies, "userId");
-	    	if (userId == null){
-	    		return null;
-	    	}
-	    	else{
-	    		// we get the login and the password from the cookie
-	    		String cookieValue = userId.getValue();
-	    		String delims = "[ ]+";
-	    		String[] idUser = cookieValue.split(delims);
-	    		User user = new User(idUser[0], idUser[1], idUser[2]);
-	    		return user;
-	    	}
-	    	
+	    	return getUserByCookie(request);
 	    }
 	    //check that he didn't just obtain a rogue session
 	    User identClient = (User)session.getAttribute("user");
@@ -50,6 +37,35 @@ public class UtilityFunctions {
 	    	return null;
 	    }
 	    else return identClient;
+	}
+	
+	// we check if the user can access the page with a valid identification cookie
+	private static User getUserByCookie(HttpServletRequest request){
+		// search an id cookie in the request
+    	Cookie[] cookies = request.getCookies();
+    	Cookie userId = searchCookie(cookies, "userId");
+    	if (userId == null){
+    		return null;
+    	}
+    	else{
+    		
+    		// we get the login and the password from the cookie
+    		String cookieValue = userId.getValue();
+    		String delims = "[ ]+";
+    		String[] idUser = cookieValue.split(delims);
+    		
+    		// we check if the user exist
+    		GestionUsers gestion = new GestionUsers();
+    		User user = gestion.isUser(idUser[0], idUser[1]);
+    		
+    		// we check if the cookie user is still valid
+    		if (user.isValid()){
+    			return user;
+    		}
+    		else{
+    			return null;
+    		}
+    	}
 	}
 	
 	// search a cookie in an array of cookies, return null if not found
