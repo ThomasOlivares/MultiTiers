@@ -58,6 +58,10 @@ public class UtilityFunctions {
     		GestionUsers gestion = new GestionUsers();
     		User user = gestion.isUser(idUser[0], idUser[1]);
     		
+    		if (user == null){
+    			return null;
+    		}
+    		
     		// we check if the cookie user is still valid
     		if (user.isValid()){
     			AutentificationUser.createSession(request, user);

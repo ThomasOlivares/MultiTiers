@@ -21,6 +21,9 @@ public class GestionUsers {
 	
 	public User isUser(String login, String mdp)
 	{
+		if (users == null){
+			return null;
+		}
 		for (User user : users){
 			if (user.getLogin().equals(login) && 
 				user.getMdp().equals(mdp))
