@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
+import first.servlet.AutentificationUser;
 import user.GestionUsers;
 import user.User;
 
@@ -59,6 +60,7 @@ public class UtilityFunctions {
     		
     		// we check if the cookie user is still valid
     		if (user.isValid()){
+    			AutentificationUser.createSession(request, user);
     			return user;
     		}
     		else{

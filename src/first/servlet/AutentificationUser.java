@@ -56,13 +56,11 @@ public class AutentificationUser extends HttpServlet {
 		
 		if (login == null || mdp == null || listeUsers.isEmpty()){
 			ServletContext sc = getServletConfig().getServletContext();
-        	RequestDispatcher rd = sc.getRequestDispatcher("/erreur.jsp");
+        	RequestDispatcher rd = sc.getRequestDispatcher("/Erreur.jsp");
         	rd.include(request, response);
 		}
 		User user = gestion.isUser(login, mdp);
 		if (user != null){
-			HttpSession session = request.getSession(false);
-			
 			// we store if the user allow cookies, and create a cookie if he does
 			user.setAllowCookies(allowCookies != null);
 			if (allowCookies != null){
@@ -71,19 +69,26 @@ public class AutentificationUser extends HttpServlet {
 				response.addCookie(userId);
 			}
 			
-			// we invalidate the session after a period of inactivity
-			session.setMaxInactiveInterval(validityPeriod);
+			createSession(request, user);
 			
-			session.setAttribute("user", user);
 			ServletContext sc = getServletConfig().getServletContext();
         	RequestDispatcher rd = sc.getRequestDispatcher("/WEB-INF/Menu.jsp");
         	rd.include(request, response);
 		}
 		else{
 			ServletContext sc = getServletConfig().getServletContext();
-        	RequestDispatcher rd = sc.getRequestDispatcher("/erreur.jsp");
+        	RequestDispatcher rd = sc.getRequestDispatcher("/Erreur.jsp");
         	rd.include(request, response);
 		}
+	}
+	
+	public static void createSession(HttpServletRequest request, User user){
+		HttpSession session = request.getSession();
+		
+		// we invalidate the session after a period of inactivity
+		session.setMaxInactiveInterval(validityPeriod);
+		
+		session.setAttribute("user", user);
 	}
 
 }
