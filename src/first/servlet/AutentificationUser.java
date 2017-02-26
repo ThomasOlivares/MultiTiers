@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import mail.MailServer;
+import useful.classes.UtilityFunctions;
 import user.GestionUsers;
 import user.User;
 
@@ -35,6 +36,17 @@ public class AutentificationUser extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		//we should not get here by get method, only post so redirect !
+		ServletContext sc =getServletConfig().getServletContext();
+    	UtilityFunctions.redirectToLogin(sc,request,response);
+		
+		
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String login = request.getParameter("login");
 		String mdp = request.getParameter("mdp");
 		
@@ -59,13 +71,6 @@ public class AutentificationUser extends HttpServlet {
         	RequestDispatcher rd = sc.getRequestDispatcher("/erreur.jsp");
         	rd.include(request, response);
 		}
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
 	}
 
 }

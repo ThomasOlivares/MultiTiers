@@ -22,7 +22,8 @@ public class ReceiveMailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	MailServer ms ;
 
-    public void init(ServletConfig config) {
+    public void init(ServletConfig config) throws ServletException {
+    	super.init(config);
 	ms = MailServer.newInstance();
     }
 
@@ -31,10 +32,11 @@ public class ReceiveMailServlet extends HttpServlet {
 	throws IOException, ServletException 
     {
     	//session verification
-        ServletContext sc =getServletConfig().getServletContext();
+      
         User user = UtilityFunctions.getUser(request);
         if(user==null)//user not authenticated         
         {
+        	ServletContext sc =getServletConfig().getServletContext();
         	UtilityFunctions.redirectToLogin(sc,request,response);
         	return;
         }
@@ -46,6 +48,7 @@ public class ReceiveMailServlet extends HttpServlet {
     	if(to==null)
         {
         	// he has a session but a bad one, invalidate and kick
+    		ServletContext sc =getServletConfig().getServletContext();
         	request.getSession().invalidate();
         	UtilityFunctions.redirectToLogin(sc,request,response);
         	return;
@@ -53,15 +56,15 @@ public class ReceiveMailServlet extends HttpServlet {
     	
     	//let's get all the messages
     	Vector<Message> messages=ms.readAllMessages(to);
-    	String mess="";
+    	String mess=Integer.toString(messages.size())+" messages inbox for the address: "+to +"\n";
     	for(int i=0;i<messages.size();i++)
     	{
-    		mess+=messages.elementAt(i).toString();
+    		mess+=messages.elementAt(i).toString()+"\n";
     	}
     	//print everything
     	out.println("<h1>Received mails:</h1>");
     	out.println(mess);
-    	out.println("<br> <a href=\"http://localhost:8080/mail/index.html\"> Go back to index.html</a>");
+    	UtilityFunctions.printFrontPageLink(out);
         out.close();
     }
 }

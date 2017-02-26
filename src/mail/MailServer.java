@@ -112,11 +112,9 @@ public class MailServer{
     	// récupérer, dans messagesRecus, les messages dont le destinataire est "to", il faut les marquer comme étant "lu"
     	// ajouter votre code ici
 
-    	int nbelts=messages.size();
-    	
-    	
-    	
-    	for(int i=0;i<nbelts;i++){
+    	int nbelts=messages.size();	
+    	for(int i=0;i<nbelts;i++)
+    	{
     		if(((Message)messages.elementAt(i)).getTo().equalsIgnoreCase(to)||(to==null)){
     			((Message)messages.elementAt(i)).setNew(false);
     			messagesRecus.addElement(messages.elementAt(i));

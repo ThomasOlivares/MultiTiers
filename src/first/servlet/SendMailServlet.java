@@ -20,7 +20,8 @@ public class SendMailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	MailServer ms ;
 
-    public void init(ServletConfig config) {
+    public void init(ServletConfig config)throws ServletException {
+    	super.init(config);
     	ms = MailServer.newInstance();
     }
 
@@ -34,9 +35,8 @@ public class SendMailServlet extends HttpServlet {
         User user = UtilityFunctions.getUser(request);
         if(user==null)//user not authenticated        
         {
-        	 ServletContext sc =getServletConfig().getServletContext();
-        	RequestDispatcher rd = sc.getRequestDispatcher("/SaisieIdentification"); //TODO proper url
-            rd.include(request, response);
+        	ServletContext sc =getServletConfig().getServletContext();
+        	UtilityFunctions.redirectToLogin(sc,request,response);
             return;
         }
 
@@ -60,8 +60,7 @@ public class SendMailServlet extends HttpServlet {
         {
         	 ServletContext sc =getServletConfig().getServletContext();
         	//bad form redirect to form
-        	RequestDispatcher rd = sc.getRequestDispatcher("/SaisieIdentification"); //TODO proper url
-            rd.include(request, response); 
+        	 UtilityFunctions.redirectToLogin(sc,request,response);
             return;
         }
         
@@ -80,7 +79,7 @@ public class SendMailServlet extends HttpServlet {
         out.println("<br>"); 
         out.println("<br>"); 
 
-        out.println("<br> <a href=\"http://localhost:8080/mail/index.html\"> Go back to index.html</a>");
+        UtilityFunctions.printFrontPageLink(out);
         out.close();
     }
 }

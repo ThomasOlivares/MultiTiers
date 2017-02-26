@@ -1,6 +1,7 @@
 package useful.classes;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -12,8 +13,12 @@ public class UtilityFunctions {
 	public static void redirectToLogin(ServletContext sc,HttpServletRequest request, HttpServletResponse response)
 	throws ServletException, IOException
 	{
-        RequestDispatcher rd = sc.getRequestDispatcher("/SaisieIdentification"); //TODO proper url
+        RequestDispatcher rd = sc.getRequestDispatcher("/accueil.jsp"); //TODO proper url
         rd.include(request, response);
+	}
+	public static void printFrontPageLink(PrintWriter out )
+	{
+		out.println("<br> <a href=\"menu.jsp\"> Go back to the menu</a>");
 	}
 	
 	

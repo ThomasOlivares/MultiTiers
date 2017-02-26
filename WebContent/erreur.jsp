@@ -8,11 +8,10 @@
 </head>
 <body>
 
-<h2>Oups, mauvaise combinaison login / mot de passe : </h2>
+<h2>Oups, mauvaise combinaison login / mot de passe avec le login: </h2>
 Login : <%= request.getParameter("login") %><br />
-Mot de passe : <%= request.getParameter("mdp") %><br />
 
-<a href = "http://localhost:8080/MVC_Olivares_Vignat/accueil.jsp">Reessayer</a>
+<a href = "accueil.jsp">Reessayer</a>
 
 </body>
 </html>

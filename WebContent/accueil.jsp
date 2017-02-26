@@ -10,7 +10,7 @@
 
 <h2>Bienvenue sur le service d'autentification</h2>
 
-<form action="AutentificationUser" method="GET">
+<form action="AutentificationUser" method="POST">
 Login: <input type="text" name="login">
 <br />
 Mot de passe: <input type="text" name="mdp" />

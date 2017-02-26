@@ -25,7 +25,8 @@ public class DeleteReadMailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	MailServer ms ;
 
-    public void init(ServletConfig config) {
+    public void init(ServletConfig config) throws ServletException {
+    	super.init(config);
     	ms = MailServer.newInstance();
     }
        
@@ -66,7 +67,7 @@ public class DeleteReadMailServlet extends HttpServlet {
     	String return_=ms.removeMessages(to);
     	out.println("Deleting all read emails:");
     	out.println(return_);
-    	out.println("<br> <a href=\"http://localhost:8080/mail/index.html\"> Go back to index.html</a>");
+    	UtilityFunctions.printFrontPageLink(out);
         out.close();
 	}
 
