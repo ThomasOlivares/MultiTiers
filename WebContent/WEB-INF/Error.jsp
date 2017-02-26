@@ -8,17 +8,10 @@
 </head>
 <body>
 
-<h2>Bienvenue sur le service d'autentification</h2>
+<h2>Oups, mauvaise combinaison login / mot de passe avec le login: </h2>
+Login : <%= request.getParameter("login") %><br />
 
-<form action="AutentificationUser" method="POST">
-Login: <input type="text" name="login">
-<br />
-Password: <input type="text" name="mdp" />
-<br />
-Allow cookies: <input type="checkbox" name="cookies" />
-<br/>
-<input type="submit" value="Connexion" />
-</form>
+<a href = "/">Reessayer</a>
 
 </body>
 </html>

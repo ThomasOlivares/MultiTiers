@@ -59,13 +59,13 @@ public class Message implements java.io.Serializable {
 		StringBuilder builder = new StringBuilder();
 		if(isNew)
 			builder.append("New");
-		builder.append("Message:\nfrom: ");
+		builder.append("Message:<br>from: ");
 		builder.append(from);
-		builder.append("\nto:");
+		builder.append("<br>fto:");
 		builder.append(to);
-		builder.append("\nSubject:");
+		builder.append("<br>fSubject:");
 		builder.append(subject);
-		builder.append("\nMessage=");
+		builder.append("<br>fMessage=");
 		builder.append(message);
 		return builder.toString();
 	}

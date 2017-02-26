@@ -72,12 +72,12 @@ public class AutentificationUser extends HttpServlet {
 			createSession(request, user);
 			
 			ServletContext sc = getServletConfig().getServletContext();
-        	RequestDispatcher rd = sc.getRequestDispatcher("/WEB-INF/Menu.jsp");
+        	RequestDispatcher rd = sc.getRequestDispatcher("/Menu");
         	rd.include(request, response);
 		}
 		else{
 			ServletContext sc = getServletConfig().getServletContext();
-        	RequestDispatcher rd = sc.getRequestDispatcher("/Erreur.jsp");
+        	RequestDispatcher rd = sc.getRequestDispatcher("/Error");
         	rd.include(request, response);
 		}
 	}

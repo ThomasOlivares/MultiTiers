@@ -1,30 +1,30 @@
 package first.servlet;
 
 import java.io.IOException;
-import java.util.Vector;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import mail.Message;
 import useful.classes.UtilityFunctions;
 import user.User;
 
 /**
- * Servlet implementation class Menu
+ * Servlet implementation class DeconnexionUser
  */
-@WebServlet("/Menu")
-public class Menu extends HttpServlet {
+@WebServlet("/DisconnectUser")
+public class DisconnectUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Menu() {
+    public DisconnectUser() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,7 +33,9 @@ public class Menu extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		// TODO Auto-generated method stub
+		//session verification
+	      
         User user = UtilityFunctions.getUser(request);
         if(user==null)//user not authenticated         
         {
@@ -41,8 +43,15 @@ public class Menu extends HttpServlet {
         	UtilityFunctions.redirectToLogin(sc,request,response);
         	return;
         }
-        
-        this.getServletContext().getRequestDispatcher( "/WEB-INF/Menu.jsp" ).forward( request, response);
+		HttpSession session = request.getSession(false);
+		if(session==null)
+		session.setAttribute("user", null);
+		session.invalidate();
+		
+		// We redirect the user to the welcome page
+		ServletContext sc = getServletConfig().getServletContext();
+    	RequestDispatcher rd = sc.getRequestDispatcher("/WEB-INF/Goodbye.jsp");
+    	rd.include(request, response);
 	}
 
 	/**

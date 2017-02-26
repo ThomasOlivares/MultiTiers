@@ -54,7 +54,7 @@ public class ReceiveMailServlet extends HttpServlet {
     	
     	//let's get all the messages
     	Vector<Message> messages=ms.readAllMessages(to);
-    	String mess=Integer.toString(messages.size())+" messages inbox for the address: "+to +"\n";
+    	String mess=Integer.toString(messages.size())+" messages inbox for the address: "+to +"<br>";
     	for(int i=0;i<messages.size();i++)
     	{
     		mess+=messages.elementAt(i).toString()+"<br>";

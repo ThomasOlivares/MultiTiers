@@ -15,7 +15,7 @@ To: <input type="text" name="to" />
 <br />
 Subject: <input type="text" name="subject" />
 <br />
-Message: <input type="text" name="message" />
+Message: <input type="text-area" name="message" />
 <input type="submit" value="Submit" />
 </form>
 
@@ -26,7 +26,7 @@ Message: <input type="text" name="message" />
 </body>
 
 <h1> Logout:</h1>
-<a href = "http://localhost:8080/MVC_Olivares_Vignat/DeconnexionUser">Logout</a>
+<a href = "DisconnectUser">Logout</a>
 
 </body>
 </html>

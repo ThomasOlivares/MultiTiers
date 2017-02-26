@@ -1,30 +1,23 @@
 package first.servlet;
 
 import java.io.IOException;
-import java.util.Vector;
-
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import mail.Message;
-import useful.classes.UtilityFunctions;
-import user.User;
-
 /**
- * Servlet implementation class Menu
+ * Servlet implementation class Goodbye
  */
-@WebServlet("/Menu")
-public class Menu extends HttpServlet {
+@WebServlet("/Goodbye")
+public class Goodbye extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Menu() {
+    public Goodbye() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,16 +26,8 @@ public class Menu extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        User user = UtilityFunctions.getUser(request);
-        if(user==null)//user not authenticated         
-        {
-        	ServletContext sc =getServletConfig().getServletContext();
-        	UtilityFunctions.redirectToLogin(sc,request,response);
-        	return;
-        }
-        
-        this.getServletContext().getRequestDispatcher( "/WEB-INF/Menu.jsp" ).forward( request, response);
+		// TODO Auto-generated method stub
+		 this.getServletContext().getRequestDispatcher( "/WEB-INF/Goodbye.jsp" ).forward( request, response);
 	}
 
 	/**

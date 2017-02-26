@@ -15,7 +15,7 @@ public class UtilityFunctions {
 	public static void redirectToLogin(ServletContext sc,HttpServletRequest request, HttpServletResponse response)
 	throws ServletException, IOException
 	{
-        RequestDispatcher rd = sc.getRequestDispatcher("/accueil.jsp"); //TODO proper url
+        RequestDispatcher rd = sc.getRequestDispatcher("/");
         rd.include(request, response);
 	}
 	public static String printFrontPageLink()
