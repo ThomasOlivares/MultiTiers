@@ -48,7 +48,6 @@ public class UtilityFunctions {
     		return null;
     	}
     	else{
-    		
     		// we get the login and the password from the cookie
     		String cookieValue = userId.getValue();
     		String delims = "[ ]+";

@@ -7,6 +7,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -60,10 +61,15 @@ public class AutentificationUser extends HttpServlet {
 		}
 		User user = gestion.isUser(login, mdp);
 		if (user != null){
-			// we store if the user allow cookies or not
-			user.setAllowCookies(allowCookies != null);
-			
 			HttpSession session = request.getSession(false);
+			
+			// we store if the user allow cookies, and create a cookie if he does
+			user.setAllowCookies(allowCookies != null);
+			if (allowCookies != null){
+				String value = user.getLogin() + " " + user.getMdp() + " " + user.getMail();
+				Cookie userId = new Cookie("userId", value);
+				response.addCookie(userId);
+			}
 			
 			// we invalidate the session after a period of inactivity
 			session.setMaxInactiveInterval(validityPeriod);
