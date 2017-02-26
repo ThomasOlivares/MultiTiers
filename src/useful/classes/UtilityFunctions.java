@@ -17,9 +17,9 @@ public class UtilityFunctions {
         RequestDispatcher rd = sc.getRequestDispatcher("/accueil.jsp"); //TODO proper url
         rd.include(request, response);
 	}
-	public static void printFrontPageLink(PrintWriter out )
+	public static String printFrontPageLink()
 	{
-		out.println("<br> <a href=\"menu.jsp\"> Go back to the menu</a>");
+		return "<br> <a href=\"menu.jsp\"> Go back to the menu</a>";
 	}
 	
 	

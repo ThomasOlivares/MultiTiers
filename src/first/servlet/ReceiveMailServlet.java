@@ -24,7 +24,7 @@ public class ReceiveMailServlet extends HttpServlet {
 
     public void init(ServletConfig config) throws ServletException {
     	super.init(config);
-	ms = MailServer.newInstance();
+    	ms = MailServer.newInstance();
     }
 
 
@@ -42,8 +42,6 @@ public class ReceiveMailServlet extends HttpServlet {
         }
     	
     	
-    	response.setContentType("text/html");
-    	PrintWriter out = response.getWriter();
     	String to =  user.getMail();
     	if(to==null)
         {
@@ -59,12 +57,12 @@ public class ReceiveMailServlet extends HttpServlet {
     	String mess=Integer.toString(messages.size())+" messages inbox for the address: "+to +"\n";
     	for(int i=0;i<messages.size();i++)
     	{
-    		mess+=messages.elementAt(i).toString()+"\n";
+    		mess+=messages.elementAt(i).toString()+"<br>";
     	}
-    	//print everything
-    	out.println("<h1>Received mails:</h1>");
-    	out.println(mess);
-    	UtilityFunctions.printFrontPageLink(out);
-        out.close();
+
+    	//UtilityFunctions.printFrontPageLink(out);
+        request.setAttribute("message", mess);
+        
+        this.getServletContext().getRequestDispatcher( "/WEB-INF/ReceiveMail.jsp" ).forward( request, response);
     }
 }

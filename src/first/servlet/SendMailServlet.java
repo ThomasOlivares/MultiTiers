@@ -65,21 +65,16 @@ public class SendMailServlet extends HttpServlet {
         }
         
         ms.sendMessage(from, to,subject, message);
-        out.println("Message Sent successfully");
-	
-        out.println("<br>"); 
-        out.println("From    : " + from);
-        out.println("<br>"); 
-        out.println("To    : " + to);
-        out.println("<br>"); 
-        out.println("Subject      : " + subject);
-        out.println("<br>"); 
-        out.println("Message : " + message);
+        String mess="Message Sent successfully"+ "<br>"
+        +"From    : " + from+ "<br>"
+        +"To    : " + to+ "<br>"
+        +"Subject      : " + subject+ "<br>"
+        +"Message : " + message+ "<br>"+ "<br>";
+        
 
-        out.println("<br>"); 
-        out.println("<br>"); 
-
-        UtilityFunctions.printFrontPageLink(out);
-        out.close();
+      //UtilityFunctions.printFrontPageLink(out);
+        request.setAttribute("message", mess);
+        
+        this.getServletContext().getRequestDispatcher( "/WEB-INF/SendMail.jsp" ).forward( request, response);
     }
 }

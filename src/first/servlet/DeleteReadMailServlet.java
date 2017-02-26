@@ -49,8 +49,7 @@ public class DeleteReadMailServlet extends HttpServlet {
         	ServletContext sc =getServletConfig().getServletContext();
         	UtilityFunctions.redirectToLogin(sc,request,response);
         	return;
-        }
-		
+        }		
 		
         response.setContentType("text/html");
     	PrintWriter out = response.getWriter();
@@ -64,11 +63,11 @@ public class DeleteReadMailServlet extends HttpServlet {
          	UtilityFunctions.redirectToLogin(sc,request,response);
          	return;
          }
-    	String return_=ms.removeMessages(to);
-    	out.println("Deleting all read emails:");
-    	out.println(return_);
-    	UtilityFunctions.printFrontPageLink(out);
-        out.close();
+    	String mess="Deleting all read emails:<br>" +ms.removeMessages(to);
+    	//UtilityFunctions.printFrontPageLink(out);
+        request.setAttribute("message", mess);
+        
+        this.getServletContext().getRequestDispatcher( "/WEB-INF/DeleteMail.jsp" ).forward( request, response);
 	}
 
 	/**
